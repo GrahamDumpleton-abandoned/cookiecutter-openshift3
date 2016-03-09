@@ -4,7 +4,7 @@ This is an experimental Cookiecutter template for creating OpenShift configurati
 
 ## Cookiecutter version
 
-Note that this will not work with the current released version of ``cookiecutter``. This is because to implement support for optional data inputs, it was necessary to modify ``cookiecutter``. The claim is to try and get the changes accepted back into ``cookiecutter``, but for now you will need to use a forked version of ``cookiecutter``.
+Note that this will not work with the current released version of ``cookiecutter``. This is because to implement support for optional data inputs, it was necessary to modify ``cookiecutter``. The aim is to try and get the changes accepted back into ``cookiecutter``, but for now you will need to use a forked version of ``cookiecutter``.
 
 To install the forked version of ``cookiecutter``, preferably in a Python virtual environment, run:
 
