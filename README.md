@@ -178,4 +178,4 @@ Password (again):
 Superuser created successfully.
 ```
 
-You can then access the ``/admin`` URL of the Wagtail CMS site and start creating pages.
+You can then access the ``/admin`` URL of the Wagtail CMS site, login using the super user account you created, and start creating pages.
