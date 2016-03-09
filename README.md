@@ -82,6 +82,11 @@ database_password [V7z3RHSvdIhYQQAc]:
 database_name [wagtail_db]:
 database_memory_limit [128Mi]:
 database_volume_capacity [512Mi]:
+Select requires_redis:
+1 - y
+2 - n
+Choose from 1, 2 [1]:
+redis_memory_limit [128Mi]:
 ```
 
 To actually deploy the Wagtail CMS site using the generated configuration, use the ``oc create`` command on the ``project.json`` file which was created.
@@ -97,6 +102,9 @@ route "wagtail" created
 persistentvolumeclaim "wagtail-db-pvc" created
 deploymentconfig "wagtail-db" created
 service "wagtail-db" created
+imagestream "wagtail-redis" created
+deploymentconfig "wagtail-redis" created
+service "wagtail-redis" created
 ```
 
 For this particular example, once deployed and running, you will need to initialise the database and create a super user account for the Django admin. To do this, identify any of the pods for the running instances of the Wagtail CMS site and run Django database migrations and super user creation admin commands.
