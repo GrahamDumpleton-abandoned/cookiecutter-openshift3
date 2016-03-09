@@ -1,0 +1,53 @@
+{
+    "kind": "BuildConfig",
+    "apiVersion": "v1",
+    "metadata": {
+        "name": "{{cookiecutter.application_name}}",
+        "labels": {
+            "app": "{{cookiecutter.application_name}}"
+        }
+    },
+    "spec": {
+        "triggers": [
+            {
+                "type": "ImageChange",
+                "imageChange": {}
+            },
+            {
+                "type": "ConfigChange"
+            }
+        ],
+        "source": {
+            "type": "Git",
+            "git": {
+                "uri": "{{cookiecutter.git_repository}}",
+                "ref": "{{cookiecutter.git_repository_branch}}"
+            }
+        },
+        "strategy": {
+            "type": "Source",
+            "sourceStrategy": {
+                "from": {
+                    "kind": "ImageStreamTag",
+{% if cookiecutter.s2i_builder_image.split('/')[0] != 'openshift' %}
+{% if cookiecutter.s2i_builder_image.split(':')[1:] %}
+                    "name":
+                    "{{cookiecutter.application_name}}-s2i:{{cookiecutter.s2i_builder_image.split(':')[1:][0]}}"
+{% else %}
+                    "name": "{{cookiecutter.application_name}}-s2i:latest"
+{% endif %}
+{% else %}
+                    "namespace": "{{cookiecutter.s2i_builder_image.split('/')[0]}}",
+                    "name": "{{cookiecutter.s2i_builder_image.split('/')[1]}}"
+{% endif %}
+                }
+            }
+        },
+        "output": {
+            "to": {
+                "kind": "ImageStreamTag",
+                "name": "{{cookiecutter.application_name}}:latest"
+            }
+        }
+    }
+}

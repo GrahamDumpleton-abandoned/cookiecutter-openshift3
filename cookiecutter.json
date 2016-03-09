@@ -1,0 +1,91 @@
+{
+    "_copy_without_render": [
+        "components/*.json",
+        "datastores/*.json"
+    ],
+
+    "repo_name": "openshift",
+
+    "application_name": "my-application",
+
+    "git_repository": "",
+    "git_repository_branch": "master",
+
+    "language_runtime": {
+        "NodeJS": {
+            "s2i_builder_image": {
+                "openshift/nodejs:0.10" : "openshift/nodejs:0.10",
+                "?": {
+                    "s2i_builder_image": ""
+                }
+            }
+        },
+        "PHP": {
+            "s2i_builder_image": {
+                "openshift/php:5.5" : "openshift/php:5.5",
+                "openshift/php:5.6" : "openshift/php:5.6",
+                "?" : {
+                    "s2i_builder_image": ""
+                }
+            }
+        },
+        "Python": {
+            "s2i_builder_image": {
+                "openshift/python:2.7" : "openshift/python:2.7",
+                "openshift/python:3.3" : "openshift/python:3.3",
+                "openshift/python:3.4" : "openshift/python:3.4",
+                "?" : {
+                    "s2i_builder_image": ""
+                }
+            },
+            "python_web_framework" : {
+                "Django" : {
+                    "django_settings_module": ""
+                },
+                "?": {
+                    "python_web_framework": ""
+                }
+            }
+        },
+        "Ruby": {
+            "s2i_builder_image": {
+                "openshift/ruby:2.0" : "openshift/ruby:2.0",
+                "openshift/ruby:2.2" : "openshift/ruby:2.2",
+                "?" : {
+                    "s2i_builder_image": ""
+                }
+            }
+        }
+    },
+
+    "application_replicas": "1",
+
+    "requires_external_route": {
+        "y" : {
+            "route_hostname": ""
+        },
+        "n" : null
+    },
+
+    "application_memory_limit": "128Mi",
+
+    "requires_persistent_storage" : {
+        "y" : {
+            "application_volume_capacity": "512Mi",
+            "application_volume_mount_point": "/opt/app-root/data"
+        },
+        "n": null
+    },
+
+    "requires_database" : {
+        "y" : {
+            "database_type": [ "MySQL", "PostgreSQL" ],
+            "database_user": "user{% for _ in range(4) %}{{'ABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789'|random}}{% endfor %}",
+            "database_password": "{% for _ in range(16) %}{{'abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789'|random}}{% endfor %}",
+            "database_name": "{{ cookiecutter.application_name|replace('-', '_') }}_db",
+            "database_memory_limit": "128Mi",
+            "database_volume_capacity": "512Mi"
+        },
+        "n": null
+    }
+}

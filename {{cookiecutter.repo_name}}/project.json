@@ -1,0 +1,24 @@
+{
+    "kind": "List",
+    "apiVersion": "v1",
+    "items": [
+        {% include 'components/ImageStream.json' %}
+        , {% include 'components/BuildConfig.json' %}
+        , {% include 'components/DeploymentConfig.json' %}
+{% if cookiecutter.requires_persistent_storage == 'y' %}
+        , {% include 'components/PersistentVolumeClaim.json' %}
+{% endif %}
+        , {% include 'components/Service.json' %}
+{% if cookiecutter.requires_external_route == 'y' %}
+        , {% include 'components/Route.json' %}
+{% endif %}
+{% if cookiecutter.requires_database == 'y' %}
+{% if cookiecutter.database_type == 'MySQL' %}
+        , {% include 'datastores/MySQL.json' %}
+{% endif %}
+{% if cookiecutter.database_type == 'PostgreSQL' %}
+        , {% include 'datastores/PostgreSQL.json' %}
+{% endif %}
+{% endif %}
+    ]
+}
