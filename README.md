@@ -82,7 +82,11 @@ database_password [V7z3RHSvdIhYQQAc]:
 database_name [wagtail_db]:
 database_memory_limit [128Mi]:
 database_volume_capacity [512Mi]:
+```
 
+To actually deploy the Wagtail CMS site using the generated configuration, use the ``oc create`` command on the ``project.json`` file which was created.
+
+```
 $ oc create -f openshift/project.json
 imagestream "wagtail" created
 imagestream "wagtail-s2i" created
