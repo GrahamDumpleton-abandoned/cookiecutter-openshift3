@@ -114,7 +114,8 @@ $ oc get pods --selector app=wagtail
 NAME              READY     STATUS    RESTARTS   AGE
 wagtail-1-369kz   1/1       Running   0          51s
 wagtail-1-gfd2j   1/1       Running   0          55s
-grumpy-old-man:cookiecutter-openshift graham$ oc rsh wagtail-1-369kz warpdrive exec python manage.py migrate
+
+$ oc rsh wagtail-1-369kz warpdrive exec python manage.py migrate
 Operations to perform:
   Apply all migrations: taggit, wagtailredirects, auth, contenttypes, wagtailembeds, admin, wagtailsearch, home, wagtailadmin, sessions, wagtailimages, wagtailforms, wagtailusers, wagtailcore, wagtaildocs
 Running migrations:
