@@ -1,0 +1,107 @@
+        {
+            "kind": "ImageStream",
+            "apiVersion": "v1",
+            "metadata": {
+                "name": "{{cookiecutter.application_name}}-redis",
+                "labels": {
+                    "app": "{{cookiecutter.application_name}}"
+                }
+            },
+            "spec": {
+                "tags": [
+                    {
+                        "name": "latest",
+                        "from": {
+                            "kind": "DockerImage",
+                            "name": "library/redis"
+                        }
+                    }
+                ]
+            }
+        },
+        {
+            "kind": "DeploymentConfig",
+            "apiVersion": "v1",
+            "metadata": {
+                "name": "{{cookiecutter.application_name}}-redis",
+                "labels": {
+                    "db": "{{cookiecutter.application_name}}-redis"
+                }
+            },
+            "spec": {
+                "triggers": [
+                    {
+                        "type": "ImageChange",
+                        "imageChangeParams": {
+                            "automatic": true,
+                            "containerNames": [
+                                "{{cookiecutter.application_name}}-redis"
+                            ],
+                            "from": {
+                                "kind": "ImageStreamTag",
+                                "name": "{{cookiecutter.application_name}}-redis:latest"
+                            }
+                        }
+                    },
+                    {
+                        "type": "ConfigChange"
+                    }
+                ],
+                "replicas": 1,
+                "selector": {
+                    "deploymentconfig": "{{cookiecutter.application_name}}-redis"
+                },
+                "template": {
+                    "metadata": {
+                        "name": "{{cookiecutter.application_name}}-redis",
+                        "labels": {
+                            "db": "{{cookiecutter.application_name}}-redis"
+                        }
+                    },
+                    "spec": {
+                        "containers": [
+                            {
+                                "name": "{{cookiecutter.application_name}}-redis",
+                                "image": "library/redis",
+                                "ports": [
+                                    {
+                                        "containerPort": 6379,
+                                        "protocol": "TCP"
+                                    }
+                                ]
+{% if cookiecutter.redis_memory_limit != '' %}
+                                , "resources": {
+                                  "limits": {
+                                    "memory": "{{cookiecutter.redis_memory_limit}}"
+                                  }
+                                }
+{% endif %}
+                            }
+                        ]
+                    }
+                }
+            }
+        },
+        {
+            "kind": "Service",
+            "apiVersion": "v1",
+            "metadata": {
+                "name": "{{cookiecutter.application_name}}-redis",
+                "labels": {
+                    "db": "{{cookiecutter.application_name}}-redis"
+                }
+            },
+            "spec": {
+                "ports": [
+                    {
+                        "name": "postgresql",
+                        "protocol": "TCP",
+                        "port": 6379,
+                        "targetPort": 6379
+                    }
+                ],
+                "selector": {
+                    "deploymentconfig": "{{cookiecutter.application_name}}-redis"
+                }
+            }
+        }

@@ -20,5 +20,8 @@
         , {% include 'datastores/PostgreSQL.json' %}
 {% endif %}
 {% endif %}
+{% if cookiecutter.requires_redis == 'y' %}
+        , {% include 'datastores/Redis.json' %}
+{% endif %}
     ]
 }

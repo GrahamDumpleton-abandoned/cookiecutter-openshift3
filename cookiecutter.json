@@ -87,5 +87,12 @@
             "database_volume_capacity": "512Mi"
         },
         "n": null
+    },
+
+    "requires_redis" : {
+        "y": {
+            "redis_memory_limit": "128Mi"
+        },
+        "n": null
     }
 }

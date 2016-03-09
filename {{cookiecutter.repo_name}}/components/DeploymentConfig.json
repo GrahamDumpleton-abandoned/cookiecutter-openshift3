@@ -93,6 +93,16 @@
 {% endif %}
                             }
 {% endif %}
+{% if cookiecutter.requires_redis == 'y' %}
+                            , {
+                                "name": "OPENSHIFT_REDIS_HOST",
+                                "value": "{{cookiecutter.application_name}}-redis"
+                            }
+                            , {
+                                "name": "OPENSHIFT_REDIS_PORT",
+                                "value": "6379"
+                            }
+{% endif %}
 {% if cookiecutter.language_runtime == 'Python' %}
 {% if cookiecutter.python_web_framework == 'Django' %}
                             , {
