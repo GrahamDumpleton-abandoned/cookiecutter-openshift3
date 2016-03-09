@@ -83,7 +83,7 @@
             "database_user": "user{% for _ in range(4) %}{{'ABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789'|random}}{% endfor %}",
             "database_password": "{% for _ in range(16) %}{{'abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789'|random}}{% endfor %}",
             "database_name": "{{ cookiecutter.application_name|replace('-', '_') }}_db",
-            "database_memory_limit": "128Mi",
+            "database_memory_limit": "512Mi",
             "database_volume_capacity": "512Mi"
         },
         "n": null
