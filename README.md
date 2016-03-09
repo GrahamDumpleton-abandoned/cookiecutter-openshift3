@@ -80,7 +80,7 @@ Choose from 1, 2 [1]: 2
 database_user [user3TIC]:
 database_password [V7z3RHSvdIhYQQAc]:
 database_name [wagtail_db]:
-database_memory_limit [128Mi]:
+database_memory_limit [512Mi]:
 database_volume_capacity [512Mi]:
 Select requires_redis:
 1 - y
