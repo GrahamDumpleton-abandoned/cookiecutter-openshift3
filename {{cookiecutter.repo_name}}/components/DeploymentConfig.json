@@ -33,8 +33,7 @@
         "template": {
             "metadata": {
                 "labels": {
-                    "app": "{{cookiecutter.application_name}}",
-                    "deploymentconfig": "{{cookiecutter.application_name}}"
+                    "app": "{{cookiecutter.application_name}}"
                 }
             },
             "spec": {
