@@ -28,7 +28,7 @@
         ],
         "replicas": {{cookiecutter.application_replicas}},
         "selector": {
-            "deploymentconfig": "{{cookiecutter.application_name}}"
+            "app": "{{cookiecutter.application_name}}"
         },
         "template": {
             "metadata": {
