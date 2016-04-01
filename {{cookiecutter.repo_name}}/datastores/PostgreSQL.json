@@ -23,7 +23,7 @@
             "metadata": {
                 "name": "{{cookiecutter.application_name}}-db",
                 "labels": {
-                    "db": "{{cookiecutter.application_name}}-db"
+                    "app": "{{cookiecutter.application_name}}-db"
                 }
             },
             "spec": {
@@ -51,13 +51,13 @@
                 ],
                 "replicas": 1,
                 "selector": {
-                    "deploymentconfig": "{{cookiecutter.application_name}}-db"
+                    "app": "{{cookiecutter.application_name}}-db"
                 },
                 "template": {
                     "metadata": {
                         "name": "{{cookiecutter.application_name}}-db",
                         "labels": {
-                            "db": "{{cookiecutter.application_name}}-db"
+                            "app": "{{cookiecutter.application_name}}-db"
                         }
                     },
                     "spec": {
@@ -122,7 +122,7 @@
             "metadata": {
                 "name": "{{cookiecutter.application_name}}-db",
                 "labels": {
-                    "db": "{{cookiecutter.application_name}}-db"
+                    "app": "{{cookiecutter.application_name}}-db"
                 }
             },
             "spec": {
@@ -135,7 +135,7 @@
                     }
                 ],
                 "selector": {
-                    "deploymentconfig": "{{cookiecutter.application_name}}-db"
+                    "app": "{{cookiecutter.application_name}}-db"
                 }
             }
         }
