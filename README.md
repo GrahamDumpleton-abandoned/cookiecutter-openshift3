@@ -1,4 +1,4 @@
-# cookiecutter-openshift
+# cookiecutter-openshift3
 
 This is an experimental Cookiecutter template for creating OpenShift configurations for basic applications.
 
@@ -17,7 +17,7 @@ pip install -U https://github.com/GrahamDumpleton/cookiecutter/archive/master.zi
 Once ``cookiecutter`` has been installed, you should run the command:
 
 ```
-cookiecutter https://github.com/GrahamDumpleton/cookiecutter-openshift.git
+cookiecutter https://github.com/GrahamDumpleton/cookiecutter-openshift3.git
 ```
 
 This will download a copy of the template repository to your local box and then run ``cookiecutter`` on it.
@@ -29,8 +29,8 @@ This will prompt you with various questions about what you require for your appl
 Sample output for creating an OpenShift configuration for running a Wagtail CMS site, including persistent database is included below. Note that this uses the ``warpdrive`` based Python S2I builder for OpenShift and not the default OpenShift Python S2I builder.
 
 ```
-$ cookiecutter https://github.com/GrahamDumpleton/cookiecutter-openshift.git
-Cloning into 'cookiecutter-openshift'...
+$ cookiecutter https://github.com/GrahamDumpleton/cookiecutter-openshift3.git
+Cloning into 'cookiecutter-openshift3'...
 remote: Counting objects: 15, done.
 remote: Compressing objects: 100% (11/11), done.
 remote: Total 15 (delta 4), reused 15 (delta 4), pack-reused 0
